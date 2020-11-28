@@ -1,0 +1,19 @@
+
+http://localhost:8000/status
+
+###
+# GET User ID
+http://localhost:8000/user/32323232
+
+###
+
+POST http://localhost:8000/user/register 
+
+Content-Type: application/json
+
+{
+	"firstName": "Yair",
+    "lastName": "Abranyi",
+    "password": "01yair01",
+    "email": "String"
+}
