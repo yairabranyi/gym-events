@@ -11,5 +11,5 @@ const EventSchema = new mongoose.Schema({
     ref: 'User'
   }
 })
-
-module.exports = mongoose.model('Event', UserSchema)
+            
+module.exports = mongoose.model('Event', EventSchema)

@@ -1,16 +1,17 @@
 const Event = require('../models/Event')
-
-// title: String,
-// description: String,
-// price: Number,
-// thumbnail: String
+const User = require('../models/User')
 
 module.exports = {
-  async creatEvent (req, res) {
-    const { yitle, description, price } = req.body
-    const { userId } = req.headers
-    const { fileName } = req.file
-    const user = await User.findById(userId)
+  async createEvent (req, res) {
+    const { title, description, price } = req.body
+    console.log(req.headers)
+
+    const { user_id } = req.headers
+    console.log('User id is:', user_id) 
+    const { filename } = req.file
+    console.log('Searching id')
+    const user = await User.findById(user_id)
+    // const user = false
 
     if (!user) {
       return res.status(400).json({ message: 'User does not exit!' })
@@ -19,11 +20,10 @@ module.exports = {
     const event = await Event.create({
       title,
       description,
-      price,
-      user: userId,
-      thumbnail: filename
+      price: parseFloat(price),
+      user: user_id,
+      thumbnail: filename 
     })
     return res.json(event)
-
-  }
+  }   
 }
